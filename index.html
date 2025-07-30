@@ -1,64 +1,314 @@
 <!DOCTYPE html>
-<html lang="">
-
+<html lang="zh-CN">
 <head>
-  <link rel="stylesheet" href="https://unpkg.com/mdui@2/mdui.css">
-  <script src="https://unpkg.com/mdui@2/mdui.global.js"></script>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>无垠喵の小窝</title>
-  <!--
-  <script>
-    import 'mdui/components/top-app-bar.js';
-    import 'mdui/components/top-app-bar-title.js';
-  </script>
-  <div style="position: relative;overflow: hidden">
-    <mdui-top-app-bar variant="small" scroll-target=".example-variant" class="example-variant-bar">
-      <mdui-button-icon icon="menu"></mdui-button-icon>
-      <mdui-top-app-bar-title>无垠喵の小窝</mdui-top-app-bar-title>
-      <div style="flex-grow: 1"></div>
-      <mdui-button-icon icon="more_vert"></mdui-button-icon>
-    </mdui-top-app-bar>
-  <script>
-    const topAppBar = document.querySelector(".example-variant-bar");
-    const segmentedButtonGroup = document.querySelector(".example-variant");
+  <style>
+    /* 基础样式重置 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    segmentedButtonGroup.addEventListener("change", (event) => {
-      topAppBar.variant = event.target.value;
-    });
-  </script>
-  -->
-  <h1>欢迎来到无垠喵の小窝</h1>
+    :root {
+      --primary: #4da6ff;
+      --secondary: #00cc99;
+      --accent: #ff66b3;
+      --light: #e6f7ff;
+      --dark: #0066cc;
+      --glass: rgba(255, 255, 255, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.9);
+      --shadow: 0 8px 32px rgba(0, 102, 204, 0.2);
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #a6d1ff, #c2e9fb, #b5f8fe);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: #333;
+      line-height: 1.6;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* 气泡容器 */
+    .bubble-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* 玻璃拟态效果 */
+    .glass-card {
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(0, 102, 204, 0.3);
+    }
+
+    /* 标题样式 */
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      color: var(--dark);
+      margin-bottom: 20px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+
+    h2 {
+      font-size: 2.2rem;
+      color: var(--dark);
+      margin: 25px 0 15px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid rgba(77, 166, 255, 0.3);
+    }
+
+    /* 按钮样式 */
+    .btn-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin: 20px 0;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 25px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      transition: 0.5s;
+    }
+
+    .btn:hover:before {
+      left: 100%;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 102, 204, 0.4);
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    /* 内容样式 */
+    p {
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+    }
+
+    a {
+      color: var(--dark);
+      text-decoration: none;
+      position: relative;
+      font-weight: 500;
+    }
+
+    a:after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    a:hover:after {
+      width: 100%;
+    }
+
+    /* 页脚样式 */
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: var(--dark);
+      font-size: 0.9rem;
+      margin-top: 30px;
+    }
+
+    /* 装饰元素 */
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(5px);
+      z-index: -1;
+    }
+
+    /* 响应式设计 */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      h2 {
+        font-size: 1.8rem;
+      }
+
+      .glass-card {
+        padding: 20px;
+      }
+
+      .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+      }
+    }
+
+    /* 动画效果 */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .floating {
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .kitten-icon {
+      display: inline-block;
+      width: 60px;
+      height: 60px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="35" cy="40" r="10" fill="%23333"/><circle cx="65" cy="40" r="10" fill="%23333"/><path d="M50,65 Q60,75 70,65" stroke="%23333" stroke-width="5" fill="none"/><path d="M30,30 Q35,15 50,20 Q65,15 70,30" stroke="%23333" stroke-width="5" fill="none"/></svg>');
+      margin: 0 15px;
+      vertical-align: middle;
+    }
+  </style>
 </head>
 
 <body>
-  <header>
-    <h2>新的博客已经搭建完毕，<a href="/blog">点此前往</a></h2>
-    <h2>关于我</h2>
-    <p>
-      一只小猫咪(｡･ω･｡)ﾉ♡，全称“通过GPG加密的无垠喵”，简称无垠或无垠喵。英文名：GNU_QtKitten，简称GQKitten，里面包含了三个开源项目，你发现了吗？<br>
-      我是一名极客，技术爱好者，自由软件者，技术宅。头像通常是自设（或默认）。喜欢听音乐，偶尔大半夜再家里炼药（字面意思）。会一点编程，可以解决部分计算机相关的疑难杂症，有问题欢迎前来咨询<br>
-      不常玩游戏，不玩手游，主要玩Minecraft和解谜类的独立游戏，手残党这也是不玩游戏的主要原因（落地水有70%的几率摔死）<br>
-      最近忙着上学，可能回复不及时，有事QQ或邮件联系（闲聊也可以）<br>
-      QQ：3045132338<br>
-      Email：a3045132338@outlook.com<br>
-    </p>
-  </header>
-  <main>
-    <h2>站内索引</h2>
-    <p>
-      <mdui-button href="/unlock-music">音乐解锁</mdui-button>
-      <mdui-button href="/Isotopic256">元素2048</mdui-button>
-      <mdui-button href="/noteDigger">乐谱分析</mdui-button>
-    </p>
-    <h2>本人主页</h2>
-    <p>
-      <mdui-button href="https://space.bilibili.com/651012210">Bilibili</mdui-button>
-      <mdui-button href="https://github.com/gnu-qtkitten/">Github</mdui-button>
-      <mdui-button href="https://invent.kde.org/alittlekitten">KDE Invent</mdui-button>
-      <mdui-button href="https://gitea.com/gqkitten">Gitea</mdui-button>
-    </p>
-  </main>
-  <footer></footer>
-</body>
+  <!-- 装饰气泡 -->
+  <div class="bubble" style="width: 120px; height: 120px; top: 10%; left: 5%;"></div>
+  <div class="bubble" style="width: 80px; height: 80px; top: 70%; left: 10%;"></div>
+  <div class="bubble" style="width: 150px; height: 150px; top: 20%; right: 8%;"></div>
+  <div class="bubble" style="width: 100px; height: 100px; top: 65%; right: 5%;"></div>
 
+  <div class="bubble-container">
+    <header class="glass-card header floating">
+      <h1>
+        <span>欢迎来到</span>
+        <span class="kitten-icon"></span>
+        <span>无垠喵の小窝</span>
+        <span class="kitten-icon"></span>
+      </h1>
+      <h2>新的博客已经搭建完毕，<a href="/blog">点此前往 ✨</a></h2>
+    </header>
+
+    <main>
+      <section class="glass-card">
+        <h2>关于我</h2>
+        <p>
+          一只小猫咪(｡･ω･｡)ﾉ♡，全称"通过GPG加密的无垠喵"，简称无垠或无垠喵。英文名：GNU_QtKitten，简称GQKitten，里面包含了三个开源项目，你发现了吗？<br><br>
+          我是一名极客，技术爱好者，自由软件者，技术宅。头像通常是自设（或默认）。喜欢听音乐，偶尔大半夜再家里炼药（字面意思）。会一点编程，可以解决部分计算机相关的疑难杂症，有问题欢迎前来咨询<br><br>
+          不常玩游戏，不玩手游，主要玩Minecraft和解谜类的独立游戏，手残党这也是不玩游戏的主要原因（落地水有70%的几率摔死）<br><br>
+          最近忙着上学，可能回复不及时，有事QQ或邮件联系（闲聊也可以）<br><br>
+          QQ：3045132338<br>
+          Email：<a href="mailto:a3045132338@outlook.com">a3045132338@outlook.com</a>
+        </p>
+      </section>
+
+      <section class="glass-card">
+        <h2>站内索引</h2>
+        <div class="btn-container">
+          <a href="/unlock-music" class="btn">音乐解锁</a>
+          <a href="/Isotopic256" class="btn">元素2048</a>
+          <a href="/noteDigger" class="btn">乐谱分析</a>
+        </div>
+      </section>
+
+      <section class="glass-card">
+        <h2>本人主页</h2>
+        <div class="btn-container">
+          <a href="https://space.bilibili.com/651012210" class="btn">Bilibili</a>
+          <a href="https://github.com/gnu-qtkitten/" class="btn">Github</a>
+          <a href="https://invent.kde.org/alittlekitten" class="btn">KDE Invent</a>
+          <a href="https://gitea.com/gqkitten" class="btn">Gitea</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="glass-card">
+      <p>© 2025 无垠喵の小窝 | 自由 · 开源 </p>
+    </footer>
+  </div>
+
+  <script>
+    // 创建更多装饰气泡
+    document.addEventListener('DOMContentLoaded', function() {
+      const colors = ['rgba(102, 204, 255, 0.3)', 'rgba(153, 255, 204, 0.3)', 'rgba(255, 204, 153, 0.3)'];
+
+      for (let i = 0; i < 8; i++) {
+        const size = Math.random() * 80 + 40;
+        const bubble = document.createElement('div');
+        bubble.className = 'bubble';
+        bubble.style.width = `${size}px`;
+        bubble.style.height = `${size}px`;
+        bubble.style.top = `${Math.random() * 90 + 5}%`;
+        bubble.style.left = `${Math.random() * 90 + 5}%`;
+        bubble.style.background = colors[Math.floor(Math.random() * colors.length)];
+        bubble.style.animation = `float ${Math.random() * 6 + 4}s ease-in-out infinite`;
+        bubble.style.animationDelay = `${Math.random() * 5}s`;
+
+        document.body.appendChild(bubble);
+      }
+
+      // 添加浮动效果到卡片
+      const cards = document.querySelectorAll('.glass-card');
+      cards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.2}s`;
+      });
+    });
+  </script>
+</body>
 </html>
