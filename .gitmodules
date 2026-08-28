@@ -1,0 +1,3 @@
+[submodule "noteDigger"]
+	path = noteDigger
+	url = https://github.com/madderscientist/noteDigger
