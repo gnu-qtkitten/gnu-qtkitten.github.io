@@ -20,8 +20,9 @@ jobs:
           submodules: recursive
           
       - name: List files (debug)
-        run: ls -la 
-        run: ls -la noteDigger
+        run: |
+          ls -la 
+          ls -la noteDigger
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
