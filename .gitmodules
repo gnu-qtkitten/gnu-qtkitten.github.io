@@ -1,3 +1,9 @@
 [submodule "noteDigger"]
 	path = noteDigger
 	url = https://github.com/madderscientist/noteDigger
+[submodule "adarkroom"]
+	path = adarkroom
+	url = https://github.com/doublespeakgames/adarkroom
+[submodule "Isotopic256"]
+	path = Isotopic256
+	url = https://github.com/JamesDonnelly/Isotopic256
